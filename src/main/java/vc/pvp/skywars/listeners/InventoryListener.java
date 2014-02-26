@@ -46,6 +46,7 @@ public class InventoryListener implements Listener {
         }
         
         if (!PluginConfig.fillEmptyChests() && empty) {
+            gamePlayer.getGame().removeChest(location);
             return;
         }
         
