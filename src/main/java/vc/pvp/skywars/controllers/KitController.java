@@ -139,6 +139,22 @@ public class KitController {
             }
         });
 
+        Collections.sort(availableKits, new Comparator<Kit>(){
+
+            @Override
+            public int compare(Kit kit1, Kit kit2){
+
+                if(kit1.getPoints() < kit2.getPoints())
+                    return -1;
+
+                if(kit1.getPoints() > kit2.getPoints())
+                    return 1;
+
+                return 0;
+
+            }
+        });
+
         for (int iii = 0; iii < availableKits.size(); iii ++) {
             if (iii >= MAX_INVENTORY_SIZE) {
                 break;
