@@ -15,9 +15,7 @@ import vc.pvp.skywars.player.GamePlayer;
 import vc.pvp.skywars.utilities.*;
 
 import java.io.File;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.logging.Level;
 
 public class KitController {
@@ -73,11 +71,11 @@ public class KitController {
     }
 
     public boolean isPurchaseAble(Kit kit) {
-        return kit.getPoints() > 0;
+        return kit.getPoints() > -1;
     }
 
     public boolean canPurchase(GamePlayer gamePlayer, Kit kit) {
-        return kit.getPoints() > 0 && (gamePlayer.getScore() >= kit.getPoints());
+        return isPurchaseAble(kit) && (gamePlayer.getScore() >= kit.getPoints());
     }
 
     public void populateInventory(Inventory inventory, Kit kit) {
@@ -116,6 +114,11 @@ public class KitController {
                     return;
                 }
 
+                if (!hasPermission(event.getPlayer(), kit)) {
+                    event.getPlayer().sendMessage(new Messaging.MessageFormatter().format("error.no-permission-kit"));
+                    return;
+                }
+
                 if (isPurchaseAble(kit)) {
                     if (!canPurchase(gamePlayer, kit)) {
                         event.getPlayer().sendMessage(new Messaging.MessageFormatter().format("error.not-enough-score"));
@@ -124,9 +127,6 @@ public class KitController {
 
                     gamePlayer.setScore(gamePlayer.getScore() - kit.getPoints());
 
-                } else if (!hasPermission(event.getPlayer(), kit)) {
-                    event.getPlayer().sendMessage(new Messaging.MessageFormatter().format("error.no-permission-kit"));
-                    return;
                 }
 
                 event.setWillClose(true);
