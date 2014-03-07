@@ -162,22 +162,21 @@ public class KitController {
 
             Kit kit = availableKits.get(iii);
             List<String> loreList = Lists.newLinkedList();
+
             boolean canPurchase = false;
 
-            if (isPurchaseAble(kit)) {
+            if(!hasPermission(gamePlayer.getBukkitPlayer(), kit)){
+
+                loreList.add(new Messaging.MessageFormatter().format("kit.lores.no-permission"));
+                loreList.add(" ");
+
+            } else if (isPurchaseAble(kit)) {
                 loreList.add("\247r\2476Price\247f: \247" + (gamePlayer.getScore() >= kit.getPoints() ? 'a' : 'c') + kit.getPoints());
                 loreList.add(" ");
 
                 if (canPurchase(gamePlayer, kit)) {
                     canPurchase = true;
                 }
-
-            } else if (!hasPermission(gamePlayer.getBukkitPlayer(), kit)) {
-                loreList.add(new Messaging.MessageFormatter().format("kit.lores.no-permission"));
-                loreList.add(" ");
-
-            } else {
-                canPurchase = true;
             }
 
             loreList.addAll(kit.getLores());
