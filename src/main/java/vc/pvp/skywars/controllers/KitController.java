@@ -170,8 +170,10 @@ public class KitController {
                 loreList.add(new Messaging.MessageFormatter().format("kit.lores.no-permission"));
                 loreList.add(" ");
 
-            } else if (isPurchaseAble(kit)) {
-                loreList.add("\247r\2476Price\247f: \247" + (gamePlayer.getScore() >= kit.getPoints() ? 'a' : 'c') + kit.getPoints());
+            }
+            else if (isPurchaseAble(kit)) {
+
+                loreList.add("\247r\2476Price\247f: \247" + (canPurchase(gamePlayer, kit) ? 'a' : 'c') + kit.getPoints());
                 loreList.add(" ");
 
                 if (canPurchase(gamePlayer, kit)) {
