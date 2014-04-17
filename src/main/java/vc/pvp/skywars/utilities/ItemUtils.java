@@ -2,25 +2,18 @@ package vc.pvp.skywars.utilities;
 
 import com.earth2me.essentials.Enchantments;
 import com.flobi.WhatIsIt.WhatIsIt;
-import com.sk89q.commandbook.util.ItemUtil;
+import com.sk89q.commandbook.util.item.ItemUtil;
 import com.sk89q.minecraft.util.commands.CommandException;
 import com.sk89q.worldedit.blocks.ItemType;
-
-import org.bukkit.ChatColor;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 import net.ess3.api.IEssentials;
 import net.milkbowl.vault.item.ItemInfo;
 import net.milkbowl.vault.item.Items;
-
-import org.bukkit.Bukkit;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.*;
 
 public class ItemUtils {
     
