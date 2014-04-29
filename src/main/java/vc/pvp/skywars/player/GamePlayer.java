@@ -11,6 +11,7 @@ public class GamePlayer {
 
     private final Player bukkitPlayer;
     private final String playerName;
+    private final String UUID;
     private Game game;
     private boolean chosenKit;
     private int score;
@@ -66,7 +67,7 @@ public class GamePlayer {
 
     public int getScore() {
         if (PluginConfig.useEconomy() && SkyWars.getEconomy() != null) {
-            return (int) SkyWars.getEconomy().getBalance(playerName);
+            return (int) SkyWars.getEconomy().getBalance(UUID);
         }
 
         return score;
@@ -74,11 +75,11 @@ public class GamePlayer {
 
     public void setScore(int score) {
         if (PluginConfig.useEconomy() && SkyWars.getEconomy() != null) {
-            double balance = SkyWars.getEconomy().getBalance(playerName);
+            double balance = SkyWars.getEconomy().getBalance(UUID);
             if (balance < 0) {
-                SkyWars.getEconomy().depositPlayer(playerName, -balance);
+                SkyWars.getEconomy().depositPlayer(UUID, -balance);
             } else {
-                SkyWars.getEconomy().withdrawPlayer(playerName, balance);
+                SkyWars.getEconomy().withdrawPlayer(UUID, balance);
             }
             addScore(score);
 
@@ -90,9 +91,9 @@ public class GamePlayer {
     public void addScore(int score) {
         if (PluginConfig.useEconomy() && SkyWars.getEconomy() != null) {
             if (score < 0) {
-                SkyWars.getEconomy().withdrawPlayer(playerName, -score);
+                SkyWars.getEconomy().withdrawPlayer(UUID, -score);
             } else {
-                SkyWars.getEconomy().depositPlayer(playerName, score);
+                SkyWars.getEconomy().depositPlayer(UUID, score);
             }
 
         } else {
