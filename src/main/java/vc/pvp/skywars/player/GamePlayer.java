@@ -25,7 +25,7 @@ public class GamePlayer {
     private ItemStack[] savedArmorContents = null;
     
     public GamePlayer(Player bukkitPlayer) {
-        this.bukkitPlayer = bukkitPlayer;¨
+        this.bukkitPlayer = bukkitPlayer;
         this.UUID = player.getUniqueId().toString();
         this.playerName = bukkitPlayer.getName();
 
