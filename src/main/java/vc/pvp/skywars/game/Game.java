@@ -381,7 +381,7 @@ public class Game {
                 if (timer == 0) {
                     onGameStart();
                 } else if (timer % 10 == 0 || timer <= 5) {
-                    if (PluginConfig.enableSounds() && timer <= 3) {
+                    if (PluginConfig.enableSounds() && timer <= 10) {
                         for (GamePlayer gamePlayer : idPlayerMap.values()) {
                             if (gamePlayer == null) {
                                 continue;
