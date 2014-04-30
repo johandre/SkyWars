@@ -23,10 +23,11 @@ public class GamePlayer {
     private boolean skipFireTicks;
     private ItemStack[] savedInventoryContents = null;
     private ItemStack[] savedArmorContents = null;
-
+    
     public GamePlayer(Player bukkitPlayer) {
         this.bukkitPlayer = bukkitPlayer;
         this.playerName = bukkitPlayer.getName();
+        player.getUniqueId().toString()
 
         DataStorage.get().loadPlayer(this);
     }
