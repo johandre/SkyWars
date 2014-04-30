@@ -23,7 +23,6 @@ public class GamePlayer {
     private boolean skipFireTicks;
     private ItemStack[] savedInventoryContents = null;
     private ItemStack[] savedArmorContents = null;
-    UUID = player.getUniqueId().toString()
     
     public GamePlayer(Player bukkitPlayer) {
         this.bukkitPlayer = bukkitPlayer;
