@@ -11,7 +11,6 @@ public class GamePlayer {
 
     private final Player bukkitPlayer;
     private final String playerName;
-    private final String UUID;
     private Game game;
     private boolean chosenKit;
     private int score;
@@ -23,10 +22,9 @@ public class GamePlayer {
     private boolean skipFireTicks;
     private ItemStack[] savedInventoryContents = null;
     private ItemStack[] savedArmorContents = null;
-    
+
     public GamePlayer(Player bukkitPlayer) {
         this.bukkitPlayer = bukkitPlayer;
-        this.UUID = player.getUniqueId().toString();
         this.playerName = bukkitPlayer.getName();
 
         DataStorage.get().loadPlayer(this);
@@ -34,7 +32,6 @@ public class GamePlayer {
 
     public GamePlayer(String playerName) {
         this.bukkitPlayer = null;
-        this.UUID = player.getUniqueId().toString();
         this.playerName = playerName;
         DataStorage.get().loadPlayer(this);
     }
@@ -69,7 +66,7 @@ public class GamePlayer {
 
     public int getScore() {
         if (PluginConfig.useEconomy() && SkyWars.getEconomy() != null) {
-            return (int) SkyWars.getEconomy().getBalance(UUID);
+            return (int) SkyWars.getEconomy().getBalance(playerName);
         }
 
         return score;
@@ -77,11 +74,11 @@ public class GamePlayer {
 
     public void setScore(int score) {
         if (PluginConfig.useEconomy() && SkyWars.getEconomy() != null) {
-            double balance = SkyWars.getEconomy().getBalance(UUID);
+            double balance = SkyWars.getEconomy().getBalance(playerName);
             if (balance < 0) {
-                SkyWars.getEconomy().depositPlayer(UUID, -balance);
+                SkyWars.getEconomy().depositPlayer(playerName, -balance);
             } else {
-                SkyWars.getEconomy().withdrawPlayer(UUID, balance);
+                SkyWars.getEconomy().withdrawPlayer(playerName, balance);
             }
             addScore(score);
 
@@ -93,9 +90,9 @@ public class GamePlayer {
     public void addScore(int score) {
         if (PluginConfig.useEconomy() && SkyWars.getEconomy() != null) {
             if (score < 0) {
-                SkyWars.getEconomy().withdrawPlayer(UUID, -score);
+                SkyWars.getEconomy().withdrawPlayer(playerName, -score);
             } else {
-                SkyWars.getEconomy().depositPlayer(UUID, score);
+                SkyWars.getEconomy().depositPlayer(playerName, score);
             }
 
         } else {
