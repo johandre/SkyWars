@@ -52,7 +52,11 @@ public class ScoreCommand implements CommandExecutor {
                         .format("error.no-valid-player"));
                 return true;
             }
-            GamePlayer gamePlayer = new GamePlayer(args[1]);
+            GamePlayer gamePlayer;
+                if(player.isOnline())
+                  gamePlayer = PlayerController.get().get(Bukkit.getServer().getPlayer(args[2]));
+                else
+                  gamePlayer = new GamePlayer(player.getName());
             sender.sendMessage(new Messaging.MessageFormatter()
                     .setVariable("value", String.valueOf(gamePlayer.getScore()))
                     .setVariable("player", gamePlayer.getName())
@@ -76,7 +80,11 @@ public class ScoreCommand implements CommandExecutor {
                             .format("error.no-valid-player"));
                     return true;
                 }
-                GamePlayer gamePlayer = new GamePlayer(player.getName());
+                GamePlayer gamePlayer;
+                if(player.isOnline())
+                  gamePlayer = PlayerController.get().get(Bukkit.getServer().getPlayer(args[2]));
+                else
+                  gamePlayer = new GamePlayer(player.getName());
                 try {
                     int amount = Integer.parseInt(args[3]);
                     gamePlayer.setScore(amount);
@@ -109,12 +117,16 @@ public class ScoreCommand implements CommandExecutor {
                             .format("error.no-valid-player"));
                     return true;
                 }
-                GamePlayer gamePlayer = new GamePlayer(player.getName());
+                GamePlayer gamePlayer;
+                if(player.isOnline())
+                  gamePlayer = PlayerController.get().get(Bukkit.getServer().getPlayer(args[2]));
+                else
+                  gamePlayer = new GamePlayer(player.getName());
                 try {
                     int amount = Integer.parseInt(args[3]);
                     gamePlayer.setScore(gamePlayer.getScore() + amount);
                     sender.sendMessage(new Messaging.MessageFormatter()
-                            .setVariable("value", String.valueOf(amount))
+                            .setVariable("value", String.valueOf("100"))
                             .setVariable("player", gamePlayer.getName())
                             .format("success.score-give"));
                     gamePlayer.save();
@@ -142,7 +154,11 @@ public class ScoreCommand implements CommandExecutor {
                             .format("error.no-valid-player"));
                     return true;
                 }
-                GamePlayer gamePlayer = new GamePlayer(player.getName());
+                GamePlayer gamePlayer;
+                if(player.isOnline())
+                  gamePlayer = PlayerController.get().get(Bukkit.getServer().getPlayer(args[2]));
+                else
+                  gamePlayer = new GamePlayer(player.getName());
                 try {
                     int amount = Integer.parseInt(args[3]);
                     gamePlayer.setScore(gamePlayer.getScore() - amount);
