@@ -26,7 +26,7 @@ public class GamePlayer {
     
     public GamePlayer(Player bukkitPlayer) {
         this.bukkitPlayer = bukkitPlayer;
-        this.playerName = bukkitPlayer.getName();
+        this.playerName = player.getUniqueId().toString();
 
         DataStorage.get().loadPlayer(this);
     }
