@@ -26,14 +26,15 @@ public class GamePlayer {
     
     public GamePlayer(Player bukkitPlayer) {
         this.bukkitPlayer = bukkitPlayer;
+        this.UUID = player.getUniqueId().toString()
         this.playerName = bukkitPlayer.getName();
-        UUID = player.getUniqueId().toString();
 
         DataStorage.get().loadPlayer(this);
     }
 
     public GamePlayer(String playerName) {
         this.bukkitPlayer = null;
+        this.UUID = player.getUniqueId().toString()
         this.playerName = playerName;
         DataStorage.get().loadPlayer(this);
     }
