@@ -27,7 +27,7 @@ public class GamePlayer {
     public GamePlayer(Player bukkitPlayer) {
         this.bukkitPlayer = bukkitPlayer;
         this.playerName = bukkitPlayer.getName();
-        this.UUID = playerName.getUUID();
+        this.UUID = playerName.getUniqueId();
 
         DataStorage.get().loadPlayer(this);
     }
@@ -35,7 +35,7 @@ public class GamePlayer {
     public GamePlayer(String playerName) {
         this.bukkitPlayer = null;
         this.playerName = playerName;
-        this.UUID = playerName.getUUID();
+        this.UUID = playerName.getUniqueId();
         DataStorage.get().loadPlayer(this);
     }
 
